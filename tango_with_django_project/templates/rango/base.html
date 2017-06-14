@@ -19,12 +19,16 @@
             {% block sidebar_block %}
                 {% get_category_list category %}
             {% endblock %}
+            <li><a href="{% url 'rango:about' %}">About</a></li>
+            <li><a href="{% url 'rango:index' %}">Home Page</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                <li><a href="{% url 'auth_password_change' %}">Change password</a></li>
+            {% else %}
+                <li><a href="{% url 'auth_login' %}">Sign In</a></li>
+                <li><a href="{% url 'registration_register' %}">Sign Up</a></li>
+            {% endif %}
         </div>
-        <div>
-            <li><a href="{% url 'rango:add_category' %}">Add a New Category</a></li>
-            <li><a href="{% url 'rango:index' %}">Rango</a><br /></li>
-            <li><a href="{% url 'rango:about' %}">About Rango</a><br /></li>
-        </div><hr/>
         <div>
            {% block body_block %}
 
