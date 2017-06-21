@@ -1,5 +1,22 @@
-{% extends "rango/base.html" %}
+{% extends "rango/base_bootstrap.html" %}
+{% load staticfiles %}
 {% block body_block %}
-    <h1>Logged Out</h1>
-    <p>You are now logged out.</p>
+    <div class="jumbotron">
+        <h1 class="display-3">You are now logged out.</h1>
+    </div>
+
+    <link href="/static/style/signin.css" rel="stylesheet" type="text/css">
+    <form class="form-signin" role="form" method="post" action=".">
+            {% csrf_token %}
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <label for="inputUsername" class="sr-only">Username</label>
+            <input type="text" id="id_username" class="form-control" name="username" placeholder="Username" required>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" name="password" id="id_password" class="form-control" placeholder="Password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Sign in</button>
+        </form>
+    <p>
+        Not a member?
+        <a href="{% url 'registration_register' %}">Register</a>
+    </p>
 {% endblock %}
